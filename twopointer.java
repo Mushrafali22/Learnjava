@@ -1,23 +1,25 @@
 package Practice;
 
 public class twopointer {
-    public int twoPointer(int[] arr){
-        int n=arr.length;
-        int i=0;
-        for(int j=0;j<n;j++){
-            if(arr[i]!=arr[j]){
-                i++;
-                arr[i]=arr[j];
+    public static void twoPointer(int[] arr,int traget){
+        int left=0;
+        int right=arr.length-1;
+        while (left<right) {
+            int sum=arr[left]+arr[right];
+            if(sum==traget){
+                System.out.println(arr[left] + "," + arr[right]);
+                return;
+            }
+            else if(sum<traget){
+                left--;
+            }
+            else{
+                right--;
             }
         }
-        return i+1;
     }
     public static void main(String args[]){
         int[] arr={1,2,2,3,4,5,6};
-
-        twopointer obj=new twopointer();
-        int result=obj.twoPointer(arr);
-
-        System.out.println(result);
+        twoPointer(arr,6);
     }
 }
