@@ -1,8 +1,9 @@
 package Practice;
 
-import java.util.Collection;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.PriorityQueue;
 
 public class topKelement {
@@ -54,14 +55,27 @@ public class topKelement {
         }
         return minheap.peek();
     }
+    /*Kth closet element */
+    public static List<Integer> kce(int[] arr4,int target,int k){
+        PriorityQueue<Integer> minheap=new PriorityQueue<>((a,b) -> Math.abs(b-target) - Math.abs(a-target));
+        for(int num : arr4){
+            minheap.add(num);
+            if(minheap.size()>k){
+                minheap.poll();
+            }
+        }
+        return new ArrayList<>(minheap);
+    }
     public static void main(String[] args) {
         int[] arr={3,1,5,12,2,11};
         int[] arr1={3,1,5,12,2,11};
         int[] arr2={1,1,1,2,2,3,4};
         int[] arr3={3,2,1,5,6,4};
+        int[] arr4={5,6,7,8,9};
         System.out.println(fte(arr, 3));
         System.out.println(fse(arr1, 3));
         System.out.println(mfe(arr2, 2));
         System.out.println(kle(arr3, 2));
+        System.out.println(kce(arr4, 7, 3));
     }
 }
