@@ -1,5 +1,8 @@
 package Practice;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 class Node{
     int data;
     Node left;
@@ -40,6 +43,21 @@ public class Binarytreetraversal {
         System.out.println(node.data + " ");
     }
 
+    void levelorder(Node node){
+        Queue<Node> q = new LinkedList<>();
+        q.add(node);
+        while(!q.isEmpty()){
+            Node node1 = q.remove();
+            System.out.println(node1.data + "");
+            if(node1.left!=null){
+                q.add(node1.left);
+            }
+            if(node1.right!=null){
+                q.add(node1.right);
+            }
+        }
+    }
+
     public static void main(String[] args) {
         Binarytreetraversal tree=new Binarytreetraversal();
 
@@ -57,6 +75,9 @@ public class Binarytreetraversal {
 
         System.out.println("/npostOrder : ");
         tree.postOrder(tree.root);
+
+        System.out.println("levelorder : ");
+        tree.levelorder(tree.root);
     }
 }
 

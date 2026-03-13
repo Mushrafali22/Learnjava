@@ -40,8 +40,23 @@ class Graph{
             }
         }
     }
+
+    void dfs(int start){
+        boolean[] visited=new boolean[vertices];
+        dfshelper(start,visited);
+    }
+
+    void dfshelper(int node, boolean[] visited){
+        visited[node]=true;
+        System.out.println(node + "");
+        for(int neighbor : adj[node]){
+            if(!visited[neighbor]){
+                dfshelper(neighbor, visited);
+            }
+        }
+    }
 } 
-public class bfs {
+public class graphtraversal {
    public static void main(String[] args) {
     Graph g = new Graph(4);
 
@@ -50,7 +65,10 @@ public class bfs {
     g.addedge(1, 3);
     g.addedge(2, 3);
 
+    System.out.println("BFS");
     g.bfs(0);
-   }
+    System.out.println("DFS");
+    g.dfs(0);
 
+   }
 }
