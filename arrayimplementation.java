@@ -75,12 +75,41 @@ class dynamicArray{
         }
         size--;
     }
+
+    public void insertFirst(int val){
+        if(size==capacity){
+            enlargeArray();
+        }
+        for(int i=size-1;i>=0;i--){
+            arr[i+1]=arr[i];
+        }
+        arr[0]=val;
+        size++;
+    }
+
+    public int getIndex(int index){
+       return arr[index];
+    }
+
+    public void updateIndex(int index,int val){
+        arr[index]=val;
+    }
+
+    public int search(int val){
+        for(int i=0;i<size-1;){
+            if(arr[i]==val){
+                return i;
+            }
+        }
+        return -1;
+    }
 }
 
 public class arrayimplementation {
     public static void main(String[] args) {
         int val,pos,index;
         dynamicArray list = new dynamicArray();
+        @SuppressWarnings("resource")
         Scanner sc=new Scanner(System.in);
         while (true) {
         System.out.println("\n -------- List Menu --------\n");
@@ -132,10 +161,16 @@ public class arrayimplementation {
             case 7:System.out.println("Insert at Beginning");
                    System.out.println("Enter the Value : ");
                    val=sc.nextInt();
-                   //list.insertFirst();
+                   list.insertFirst(val);
                    break;
             case 8:System.out.println("Get the Index");
-                   //list.getIndex();
+                   System.out.println("enter the Index : ");
+                   index=sc.nextInt();
+                   if(index<0){
+                    System.out.println("Invalid Index");
+                    break;
+                   }
+                   System.out.println("Value for that index : "+index+" is : " + list.getIndex(index));
                    break;
             case 9:System.out.println("Update at index");
                    index=sc.nextInt();
@@ -145,12 +180,12 @@ public class arrayimplementation {
                    }
                    System.out.println("Enter the Data : ");
                    val=sc.nextInt();
-                   //list.updateIndex(pos,val);
+                   list.updateIndex(index,val);
                    break;
             case 10:System.out.println("Search the Index");
                     System.out.println("Enter the Data : ");
                     val=sc.nextInt();
-                    //list.search(val);
+                    System.out.println("element : "+val+" of the index : " + list.getIndex(val));
                     break;
             case 11:System.exit(0);    
             default:System.out.println("Invalid Choice");
